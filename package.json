@@ -9,13 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^14.2.15",
+    "@prisma/client": "^6.17.1",
     "next": "15.1.6",
+    "next-auth": "^4.24.11",
+    "prisma": "^6.17.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/node": "24.7.2",
+    "@types/react": "19.2.2",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
