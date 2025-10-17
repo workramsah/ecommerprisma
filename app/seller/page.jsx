@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
 
@@ -15,6 +16,40 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+    
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('category', category);
+    formData.append('price', price);
+    formData.append('offerPrice', offerPrice);
+
+    for (let i = 0; i < files.length; i++) {
+      if (files[i]) formData.append('images', files[i]);
+    }
+
+    try {
+      const res = await fetch('/api/product/add', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        toast.success(data.message);
+        setFiles([]);
+        setName('');
+        setCategory('Earphone');
+        setDescription('');
+        setPrice('');
+        setOfferPrice('');
+      } else {
+        toast.error(data.message || 'Upload failed');
+      }
+      
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -84,7 +119,7 @@ const AddProduct = () => {
               id="category"
               className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
               onChange={(e) => setCategory(e.target.value)}
-              defaultValue={category}
+              value={category}
             >
               <option value="Earphone">Earphone</option>
               <option value="Headphone">Headphone</option>
