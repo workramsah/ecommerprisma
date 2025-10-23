@@ -59,8 +59,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  chartItems  Json    @default("{}")
-
+  cartItems     Json    @default("{}")
  
   @@map("users")
 }
@@ -84,4 +83,15 @@ model Product {
   image       Json
   category    String
   date        DateTime @default(now())
+}
+
+model Address {
+  id          String   @id @default(cuid())
+  userId      String
+  fullName    String
+  phoneNumber String
+  pincode     String
+  area        String
+  city        String
+  state       String
 }

@@ -72,9 +72,9 @@ export async function POST(request) {
         name,
         description,
         category,
-        price,
-        offerPrice,
-        image,
+        price: price.toString(),
+        offerPrice: offerPrice.toString(),
+        image: JSON.stringify(image),
         date: new Date(),
       },
     });

@@ -5,7 +5,9 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import { useState } from "react";
 
+
 const AddAddress = () => {
+    const {router}=useAppContext()
 
     const [address, setAddress] = useState({
         fullName: '',
